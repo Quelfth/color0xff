@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug, Serialize, Deserialize)]
-pub struct Color(u8, u8, u8, u8);
+pub struct Color(pub u8, pub u8, pub u8, pub u8);
 
 impl Color {
 
@@ -30,22 +30,10 @@ impl Color {
         Self::rgba((r * 255.).clamp(0., 255.) as u8, (g * 255.).clamp(0., 255.) as u8, (b * 255.).clamp(0., 255.) as u8, (a * 255.).clamp(0., 255.) as u8)
     }
 
-    
-        //const H: f64 = 6.62607015e-34;
-                //const C: f64 = 2.99792458e8;
-                //const C_2: f64 = 8.9875517874e16;
-        
-                // 2hc^2
-                //const _2_HC2: f64 = 1.1910429724;
-                //const K: f64 = 1.380649e-23;
-        
-                // e^(hc / k)
-                //const E_HC_K: f64 = 1.01449177091;
-        
-                //_2_HC2 / ((wavelength.powi(5)) * (E_HC_K.powf(1./(wavelength*temperature)) - 1.));
-    
-
-    
+    pub fn r(self) -> u8 { self.0 }
+    pub fn g(self) -> u8 { self.1 }
+    pub fn b(self) -> u8 { self.2 }
+    pub fn a(self) -> u8 { self.3 }
 
     pub fn black_body(temperature: f64) -> Self {
         fn integral(a: f64, b: f64, temperature: f64) -> f64 {
